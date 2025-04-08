@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import AuthPage from './pages/AuthPage';
 import SearchPage from './pages/SearchPage';
@@ -7,31 +7,52 @@ import './styles/global.css';
 
 const App = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [userData, setUserData] = useState({
-        name: 'Иван Иванов',
-        usedCompanyCount: 34,
-        companyLimit: 100
-    });
+    const [userData, setUserData] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const token = localStorage.getItem('accessToken');
         if (token) {
-            setIsAuthenticated(true);
+            fetchUserData(token);
+        } else {
+            setLoading(false);
         }
     }, []);
+
+    const fetchUserData = async (token) => {
+        try {
+            const response = await fetch('https://gateway.scan-interfax.ru/api/v1/account/info', {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                },
+            });
+            const data = await response.json();
+            setUserData(data.eventFiltersInfo);
+            setIsAuthenticated(true);
+        } catch (error) {
+            console.error('Ошибка занрузки данных:', error);
+            localStorage.removeItem('accessToken');
+        } finally {
+            setLoading(false);
+        }
+    };
 
     const handleLogin = (token, expire) => {
         localStorage.setItem('accessToken', token);
         localStorage.setItem('tokenExpire', expire);
-        setIsAuthenticated(true);
+        fetchUserData(token);
     };
 
     const handleLogout = () => {
         localStorage.removeItem('accessToken');
         localStorage.removeItem('tokenExpire');
         setIsAuthenticated(false);
+        setUserData(null);
     };
 
+    if (loading) {
+        return <div className="loader">Загрузка...</div>;
+    }
 
     return (
         <Router>
@@ -41,11 +62,12 @@ const App = () => {
                     } 
                 />
                 <Route path="/login" element={
-                    <AuthPage onLogout={handleLogin} isAuthenticated={isAuthenticated} />
+                    isAuthenticated ? <Navigate to="/" /> : <AuthPage onLogout={handleLogin} />
                     }
                 />
                 <Route path="/search" element={
-                    <SearchPage isAuthenticated={isAuthenticated} userData={userData} onLogout={handleLogout} />
+                    isAuthenticated ? <SearchPage userData={userData} onLogout={handleLogout} />
+                    : <Navigate to="/login" />
                     }
                 />
             </Routes>

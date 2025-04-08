@@ -78,3 +78,14 @@ dateInputs {
 .inputError {
     border-color: red !important;
 }
+
+@media (max-width: 768px) {
+    .searchForm {
+        padding: 15px;
+    }
+
+    .dateInputs {
+        flex-direction: column;
+        gap: 10px
+    }
+}

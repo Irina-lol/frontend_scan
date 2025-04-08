@@ -1,7 +1,11 @@
 .header {
-    background-color: rgba(2, 148, 145, 1);
+    background-color: var(--primary-color);
     padding: 15px 0;
     color: white;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .container {
@@ -11,6 +15,7 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    gap: 20px;
 }
 
 .logoContainer {
@@ -20,6 +25,11 @@
 
 .logo {
     height: 40px;
+    transition: transform 0.3s;
+}
+
+.logo:hover {
+    transform: scale(1.05);
 }
 
 .navList {
@@ -27,87 +37,151 @@
     list-style: none;
     margin: 0;
     padding: 0;
-}
-
-.navList li {
-    margin-left: 30px;
+    gap: 25px;
 }
 
 .navList a {
     color: white;
     text-decoration: none;
     font-weight: 500;
+    padding: 5px 0;
+    position: relative;
+    transition: opacity 0.3s;
 }
 
 .navList a:hover {
-    text-decoration: underline;
+    opacity: 0.8;
+}
+
+.navList a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    transition: width 0.3s;
+}
+
+.navList a:hover::after {
+    width: 100%;
 }
 
 .authButtons {
     display: flex;
     align-items: center;
+    gap: 15px;
 }
 
 .registerLink {
     color: white;
     text-decoration: none;
-    margin-right: 20px;
+    transition: opacity 0.3s;
 }
 
 .registerLink:hover {
-    text-decoration: none;
+    opacity: 0.8;
+    text-decoration: underline;
 }
 
 .loginButton {
-    background-color: rgba(89, 112, 255, 1);
+    background-color: var(--accent-blue);
     color: white;
     border: none;
     padding: 8px 20px;
     border-radius: 5px;
     cursor: pointer;
     font-weight: 500;
+    transition: background-color 0.3s;
 }
 
 .loginButton:hover {
-    background-color: rgba(70, 92, 235, 1);
+    background-color: #1a3af5;
   }
   
-  .userPanel {
+.userPanel {
     display: flex;
     align-items: center;
-  }
+    gap: 20px;
+}
   
-  .limitInfo {
-    background-color: rgba(124, 227, 225, 1);
-    color: rgba(0, 0, 0, 1);
+.limitInfo {
+    background-color: var(--light-blue);
+    color: var(--black);
     padding: 8px 15px;
     border-radius: 5px;
-    margin-right: 20px;
     font-size: 14px;
-  }
+    display: flex;
+    gap: 10px;
+}
   
-  .limitInfo span {
-    display: block;
-    line-height: 1.4;
-  }
+.limitInfo span {
+    white-space: nowrap;
+}
   
-  .userInfo {
+.userInfo {
     display: flex;
     align-items: center;
-  }
+    gap: 15px;
+}
   
-  .userName {
-    margin-right: 15px;
-  }
+.userName {
+    font-weight: 500;
+}
   
-  .logoutButton {
+.logoutButton {
     background: none;
     border: none;
     color: white;
     cursor: pointer;
-    font-weight: 500;
-  }
+    padding: 5px;
+    transition: opacity 0.3s;
+}
   
-  .logoutButton:hover {
+.logoutButton:hover {
+    opacity: 0.8;
     text-decoration: underline;
-  }
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        padding: 15px;
+        gap: 15px;
+    }
+
+    .navList {
+        gap: 15px;
+    }
+
+    .userPanel {
+        flex-direction: column;
+        width: 100%;
+        align-items: flex-end;
+    }
+
+    .limitInfo {
+        margin-right: 0;
+        margin-bottom: 10px;
+        flex-direction: column;
+        gap: 5px;
+        align-items: flex-end;
+    }
+
+    .authButtons {
+        width: 100%;
+        justify-content: flex-end;
+    }
+}
+
+@media (max-width: 400px) {
+    .navList {
+        gap: 10px;
+        font-size: 14px;
+    }
+
+    .loginButton {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+}

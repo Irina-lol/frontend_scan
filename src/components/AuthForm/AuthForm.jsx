@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import styles from './AuthForm.module.css';
+import { login } from '../../api';
 
 const AuthForm = ({ onLogin }) => {
-    const [formData, setFormData] = useState({
-        login: '',
-        password: ''
-    });
+    const [formData, setFormData] = useState({ login: '', password: '' });
     const [error, setError] = useState('');
 
-    const handleChange = (e) => {
+    const handleChange =  (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({
             ...prev,
@@ -16,26 +14,13 @@ const AuthForm = ({ onLogin }) => {
         }));
     };
 
-    const handleSudmit = async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        setError('');
+        if (!formData.login || !formData.password) return;
 
         try {
-            const response = await fetch('https://gateway.scan-interfax.ru/api/v1/account/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify({
-                    login: formData.login,
-                    password: formData.password
-                })
-            });
-
-            const data = await response.json();
-
-            if (response.ok) {
+            const data = await login(formData.login, formData.password);
+            if (data.accessToken) {
                 onLogin(data.accessToken, data.expire);
             } else {
                 setError(data.message || 'Ошибка авторизации');
@@ -50,11 +35,11 @@ const AuthForm = ({ onLogin }) => {
     return (
         <div className={styles.authForm}>
             <div className={styles.tabs}>
-                <button className={`${styles.tab} ${sttyles.active}`}>Войти</button>
-                <button className={styles.tab}>Зарегестрироваться</button>
+                <button className={`${styles.tab} ${styles.active}`}>Войти</button>
+                <button className={styles.tab}>Зарегистрироваться</button>
             </div>
 
-            <form onSubmit={handleSudmit} className={styles.form}>
+            <form onSubmit={handleSubmit} className={styles.form}>
                 {error && <div className={styles.error}>{error}</div>}
 
                 <div className={styles.formGroup}>
@@ -63,7 +48,7 @@ const AuthForm = ({ onLogin }) => {
                         type="text"
                         id="login"
                         name="login"
-                        value={formData.login}
+                        value={formData.password}
                         onChange={handleChange}
                         required
                     />
@@ -83,11 +68,12 @@ const AuthForm = ({ onLogin }) => {
 
                 <a href="/forgot-password" className={styles.forgotPassword}>Восстановить пароль</a>
 
-                <button type="sudmit" className={styles.sudmitButton} disabled={!isFormValid}>Войти</button>
+                <button type="submit" className={styles.submitButton} disabled={!isFormValid}>Войти</button>
 
-                <div className={styles.socialButtons}>
+                <div className={styles.socialAuth}>
+
                     <p>Войти через:</p>
-                    <div>
+                    <div className={styles.socialButtons}>
                         <button type="button" className={styles.socialButton}>Google</button>
                         <button type="button" className={styles.socialButton}>Facebook</button>
                         <button type="button" className={styles.socialButton}>Яндекс</button>

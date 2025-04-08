@@ -2,18 +2,18 @@ import React from 'react';
 import styles from './Header.module.css';
 import logo from '../../assets/logo.png';
 
-const Header = ({ isAuthenticated, useData, onLogout }) => {
+const Header = ({ isAuthenticated, userData, onLogout }) => {
     return (
         <header className={styles.header}>
-            <div className={styles.conteiner}>
-                <div className={styles.logoConteiner}>
+            <div className={styles.container}>
+                <div className={styles.logoContainer}>
                     <img src={logo} alt="СКАН" className={styles.logo} />
                 </div>
             
 
                 <nav className={styles.nav}>
                     <ul className={styles.navList}>
-                        <li><a href="/"></a>Главная</li>
+                        <li><a href="/">Главная</a></li>
                         <li><a href="/tariffs">Тарифы</a></li>
                         <li><a href="/faq">FAQ</a></li>
                     </ul>
@@ -22,18 +22,18 @@ const Header = ({ isAuthenticated, useData, onLogout }) => {
                 {isAuthenticated ? (
                     <div className={styles.userPanel}>
                         <div className={styles.limitInfo}>
-                            <span>Использовано компаний: {userData.usedCompanyCount}</span>
-                            <span>Лимит по компаниям: {userData.companyLimit}</span>
+                            <span>Использовано компаний: {userData?.usedCompanyCount || 0}</span>
+                            <span>Лимит по компаниям: {userData?.companyLimit || 0}</span>
                         </div>
                         <div className={styles.userInfo}>
-                            <span className={styles.userName}>{userData.name}</span>
-                            <button className={styles.logoutBotton} onClick={onLogout}>Выйти</button>
+                            <span className={styles.userName}>{userData?.name}</span>
+                            <button className={styles.logoutButton} onClick={onLogout}>Выйти</button>
                      </div>
                     </div>
                 ) : (
                     <div className={styles.authButtons}>
-                        <a href="/register" className={styles.registrLink}>Зарегистрироваться</a>
-                        <a href="/login" className={styles.loginButton}>Выйти</a>
+                        <a href="/register" className={styles.registerLink}>Зарегистрироваться</a>
+                        <a href="/login" className={styles.loginButton}>Войти</a>
                     </div>
                 )}
             </div>

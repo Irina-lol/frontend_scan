@@ -93,7 +93,12 @@ const Result = ({ searchData }) => {
     };
 
     if (loading) {
-        return <div className={styles.loader}>Загрузка...</div>;
+        return (
+            <div className={styles.loaderContainer}>
+                <div className={styles.loader}></div>
+                <p>Загрузка данных...</p>
+            </div>
+        );
     }
 
     return (
