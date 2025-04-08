@@ -1,0 +1,124 @@
+.results {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+  
+.loader {
+    text-align: center;
+    padding: 50px;
+    font-size: 18px;
+}
+  
+.histograms {
+    margin-bottom: 40px;
+}
+  
+.histogramCarousel {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+    padding: 10px 0;
+}
+  
+.histogramItem {
+    min-width: 300px;
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+  
+.histogramItem h4 {
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+  
+.histogramItem ul {
+    list-style: none;
+    padding: 0;
+}
+  
+.histogramItem li {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+}
+  
+.publications {
+    margin-top: 30px;
+}
+  
+.publicationCard {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+  
+.publicationHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    color: #666;
+}
+  
+.publicationTitle {
+    margin: 10px 0;
+    color: var(--black);
+}
+  
+.publicationTags {
+    margin-bottom: 15px;
+}
+  
+.tag {
+    display: inline-block;
+    background: var(--light-blue);
+    color: var(--black);
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-right: 8px;
+    font-size: 14px;
+}
+  
+.publicationContent {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+  
+.publicationFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+  
+.readMore {
+    color: var(--accent-blue);
+    text-decoration: none;
+}
+  
+.readMore:hover {
+    text-decoration: underline;
+}
+  
+.wordCount {
+    color: #666;
+}
+  
+.loadMoreButton {
+    background: var(--accent-blue);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 20px auto;
+    display: block;
+    cursor: pointer;
+}
+  
+.loadMoreButton:hover {
+    background: rgba(70, 92, 235, 1);
+}

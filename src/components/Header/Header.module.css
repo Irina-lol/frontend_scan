@@ -1,0 +1,113 @@
+.header {
+    background-color: rgba(2, 148, 145, 1);
+    padding: 15px 0;
+    color: white;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logoContainer {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: 40px;
+}
+
+.navList {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navList li {
+    margin-left: 30px;
+}
+
+.navList a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.navList a:hover {
+    text-decoration: underline;
+}
+
+.authButtons {
+    display: flex;
+    align-items: center;
+}
+
+.registerLink {
+    color: white;
+    text-decoration: none;
+    margin-right: 20px;
+}
+
+.registerLink:hover {
+    text-decoration: none;
+}
+
+.loginButton {
+    background-color: rgba(89, 112, 255, 1);
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.loginButton:hover {
+    background-color: rgba(70, 92, 235, 1);
+  }
+  
+  .userPanel {
+    display: flex;
+    align-items: center;
+  }
+  
+  .limitInfo {
+    background-color: rgba(124, 227, 225, 1);
+    color: rgba(0, 0, 0, 1);
+    padding: 8px 15px;
+    border-radius: 5px;
+    margin-right: 20px;
+    font-size: 14px;
+  }
+  
+  .limitInfo span {
+    display: block;
+    line-height: 1.4;
+  }
+  
+  .userInfo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .userName {
+    margin-right: 15px;
+  }
+  
+  .logoutButton {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-weight: 500;
+  }
+  
+  .logoutButton:hover {
+    text-decoration: underline;
+  }

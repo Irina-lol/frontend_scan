@@ -1,0 +1,8 @@
+:root {
+    --primary-color: rgba(2, 148, 145, 1);
+    --black: rgba(0, 0, 0, 1);
+    --white: rgba(255, 255, 255, 1);
+    --accent-orange: rgba(255, 182, 79, 1);
+    --light-blue: rgba(124, 227, 225, 1);
+    --accent-blue: rgba(89, 112, 255, 1);
+}
