@@ -1,5 +1,6 @@
 import React from "react";
 import Slider from "react-slick";
+import { Link } from "react-router-dom";
 import Header from '../components/Header/Header';
 import styles from './HomePage.module.css';
 import 'slick-carousel/slick/slick.css';
@@ -21,7 +22,7 @@ const HomePage = ({ isAuthenticated, userData, onLogout }) => {
         },
         {
             title: "Гибкие тарифы",
-            description: "Подписка на нужное колличество компаний и ключевых персон",
+            description: "Подписка на нужное количество компаний и ключевых персон",
         },
     ];
 
@@ -33,7 +34,7 @@ const HomePage = ({ isAuthenticated, userData, onLogout }) => {
         slidesToScroll: 1,
         responsive: [
             {
-                breakpoint: 1024,
+                breakpoint: 1200,
                 settings: {
                     slidesToShow: 2,
                 },
@@ -42,6 +43,8 @@ const HomePage = ({ isAuthenticated, userData, onLogout }) => {
                 breakpoint: 768,
                 settings: {
                     slidesToShow: 1,
+                    arrows: false,
+                    dots: true,
                 },
             },
         ],
@@ -84,7 +87,7 @@ const HomePage = ({ isAuthenticated, userData, onLogout }) => {
                     <p>Комплексный анализ публикаций, получение данных в формате PDF на электронную почту</p>
 
                     {isAuthenticated && (
-                        <button className={styles.requestButton}>Запросить данные</button>
+                        <Link to="/search" className={styles.requestButton}>Запросить данные</Link>
                     )}
                 </section>
 
@@ -109,9 +112,9 @@ const HomePage = ({ isAuthenticated, userData, onLogout }) => {
                                 <h3>{tariff.name}</h3>
                                 <p className={styles.price}>{tariff.price}</p>
                                 <p className={styles.description}>{tariff.description}</p>
-                                <ul className={styles.features}>
-                                    {tariff.features.map((feature, index) => (
-                                        <li key={index}>{feature}</li>
+                                <ul className={styles.featuresList}>
+                                    {tariff.features.map((feature, i) => (
+                                        <li key={i}>{feature}</li>
                                     ))}
                                 </ul>
                                 <button className={styles.tariffButton} style={{ backgroundColor: tariff.color }}>

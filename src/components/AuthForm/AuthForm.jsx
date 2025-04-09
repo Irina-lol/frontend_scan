@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from './AuthForm.module.css';
 import { login } from '../../api';
+import PropTypes from "prop-types";
 
 const AuthForm = ({ onLogin }) => {
     const [formData, setFormData] = useState({ login: '', password: '' });
@@ -20,6 +21,7 @@ const AuthForm = ({ onLogin }) => {
 
         try {
             const data = await login(formData.login, formData.password);
+
             if (data.accessToken) {
                 onLogin(data.accessToken, data.expire);
             } else {
@@ -27,6 +29,7 @@ const AuthForm = ({ onLogin }) => {
             }
         } catch (err) {
             setError('Произошла ошибка при подключении к серверу');
+            console.error('Ошибка:', err);
         }
     };
 
@@ -48,7 +51,7 @@ const AuthForm = ({ onLogin }) => {
                         type="text"
                         id="login"
                         name="login"
-                        value={formData.password}
+                        value={formData.login}
                         onChange={handleChange}
                         required
                     />
@@ -82,6 +85,10 @@ const AuthForm = ({ onLogin }) => {
             </form>
         </div>
     );
+};
+
+AuthForm.prototype = {
+    onLogin: PropTypes.func.isRequired,
 };
 
 export default AuthForm;

@@ -192,7 +192,7 @@
     }
 }
 
-@media (max-widht: 480px) {
+@media (max-width: 480px) {
     .formGroup input {
         padding: 10px;
     }

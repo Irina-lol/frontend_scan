@@ -12,11 +12,19 @@ const App = () => {
 
     useEffect(() => {
         const token = localStorage.getItem('accessToken');
-        if (token) {
-            fetchUserData(token);
-        } else {
-            setLoading(false);
+        const expire = localStorage.getItem('tokenExpire');
+
+        if (token && expire) {
+            const isTokenExpired = new Date(expire) < new Date();
+            if (isTokenExpired) {
+                localStorage.removeItem('accesToken');
+                localStorage.removeItem('tokenEpire');
+                setIsAuthenticated(false);
+            } else {
+                fetchUserData(token);
+            }
         }
+        setLoading(false);
     }, []);
 
     const fetchUserData = async (token) => {
@@ -62,7 +70,7 @@ const App = () => {
                     } 
                 />
                 <Route path="/login" element={
-                    isAuthenticated ? <Navigate to="/" /> : <AuthPage onLogout={handleLogin} />
+                    isAuthenticated ? <Navigate to="/" /> : <AuthPage onLogin={handleLogin} />
                     }
                 />
                 <Route path="/search" element={

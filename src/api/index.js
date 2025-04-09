@@ -55,4 +55,5 @@ export const getDocuments = async (token, ids) => {
         },
         body: JSON.stringify({ ids }),
     });
+    return response.json();
 };

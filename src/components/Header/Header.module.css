@@ -1,3 +1,9 @@
+.loader {
+    color: white;
+    font-size: 14px;
+    padding: 10px;
+}
+
 .header {
     background-color: var(--primary-color);
     padding: 15px 0;
