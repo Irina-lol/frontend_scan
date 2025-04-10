@@ -4,12 +4,16 @@ import SearchForm from '../components/SearchForm/SearchForm';
 import Results from '../components/Results/Results';
 import styles from './SearchPage.module.css';
 
-const SearchPage = ({ isAuthenticated, userData, onLogout }) => {
+const SearchPage = ({ userData, onLogout }) => {
     const [searchData, setSearchData] = useState(null);
 
     const handleSearch = (data) => {
         setSearchData(data);
     };
+
+    const handleNewSearch = () => {
+        setSearchData(null);
+    }
 
     return (
         <div className={styles.searchPage}>
@@ -20,7 +24,12 @@ const SearchPage = ({ isAuthenticated, userData, onLogout }) => {
                 {!searchData ? (
                     <SearchForm onSearch={handleSearch} />
                 ) : (
-                    <Results searchData={searchData} />
+                    <>
+                        <button onClick={handleNewSearch} className={styles.newSearchButton}>
+                            ← Новый поиск
+                        </button>
+                        <Results searchData={searchData} />
+                    </>
                 )}
             </main>
         </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import AuthForm from '../components/AuthForm/AuthForm';
 import styles from './AuthPage.module.css';
-import { Navigate } from 'react-roter-dom';
+import { Navigate } from 'react-router-dom';
 
 const AuthPage = ({ onLogin, isAuthenticated }) => {
     if (isAuthenticated) {

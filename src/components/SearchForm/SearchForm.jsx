@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./SearchForm.module.css";
 
 const SearchForm = ({ onSearch }) => {
-    const [formDatd, setFormData] = useState({
+    const [formData, setFormData] = useState({
         inn: '',
         maxFullness: false,
         inBusinessNews: false,
@@ -28,41 +28,36 @@ const SearchForm = ({ onSearch }) => {
             ...prev,
             [name]: type === 'checkbox'? checked : value,
         }));
+
+        if (name === 'inn') {
+            setErrors(prev => ({
+                ...prev,
+                inn: value && !/^\d{10,12}$/.test(value) ? 'ИНН должен быть 10 или 12 цифр' : '',
+            }));
+        }
     };
 
-    //Валидация ИНН 10 или 12 цифр
-    const validateInn = (inn) => {
-        const innRegex = /^\d{10}$|^\d{12}$/;
-        return innRegex.test(inn);
-    };
-
-    //Валидация дат(не будущие)
-    const validateDates = (startDate, endDate) => {
-        if (!startDate || !endDate) return false;
+    const validateForm = () => {
+        const isInnValid = /^\d{10,12}$/.test(formData.inn);
         const today = new Date();
-        const start = new Date(startDate);
-        const end = new Date(endDate);
-        return start <= end && start <= today && end <= today;
+        const startDate = new Date(formData.startDate);
+        const endDate = new Date(formData.endDate)
+        const areDatesValid = startDate <= endDate && endDate <= today;
+
+        setErrors({
+            inn: isInnValid? '' : 'ИНН должен быть 10 или 12 цифрами',
+            date: areDatesValid ? '' : 'Укажите корректный диапозон дат (не будущие)',
+        });
+        
+        return isInnValid && areDatesValid && formData.startDate && formData.endDate;
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        //Валидация 
-        const isInnValid = validateInn(formData.inn);
-        const areDatesValid = validateDates(formData.startDate, formData.endDate);
-
-        setErrors({
-            inn: isInnValid? '' : 'ИНН должен быть 10 или 12 цифрами',
-            date: areDatesValid ? '' : 'Даты должны быть в формате dd.mm.yyyy и быть не будущие',
-        });
-
-        if (isInnValid && areDatesValid) {
+        if (validateForm()) {
             onSearch(formData);
         }
     };
-
-    const isFormValid = formData.inn && formData.startDate && formData.endDate;
 
     return (
         <form onSubmit={handleSubmit} className={styles.searchForm}>
@@ -177,14 +172,14 @@ const SearchForm = ({ onSearch }) => {
                         name="startDate"
                         value={formData.startDate}
                         onChange={handleChange}
-                        className={errors.date ? styles.input.Error : ''}
+                        className={errors.date ? styles.inputError : ''}
                     />
                     <input
                         type="date"
                         name="endDate"
                         value={formData.endDate}
                         onChange={handleChange}
-                        className={errors.date ? styles.input.Error : ''}
+                        className={errors.date ? styles.inputError : ''}
                     />
                 </div>
             </div>
@@ -192,7 +187,7 @@ const SearchForm = ({ onSearch }) => {
             <button 
                 type="submit"
                 className={styles.submitButton}
-                disabled={!isFormValid}
+                disabled={!formData.inn || !formData.startDate || !formData.endDate || errors.inn || errors.date}
             >
                 Поиск
             </button>

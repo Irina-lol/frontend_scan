@@ -40,33 +40,13 @@
     margin-bottom: 20px;
 }
 
-dateInputs {
+.dateInputs {
     display: flex;
     gap: 10px;
 }
 
 .dateInputs input {
     flex: 1;
-}
-
-.searchButton {
-    background-color: var(--accent-blue);
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    width: 100%;
-}
-
-.searchButton:hover {
-    background-color: rgba(70, 92, 235, 1);
-}
-
-.searchButton:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
 }
 
 .error {
@@ -79,6 +59,26 @@ dateInputs {
     border-color: red !important;
 }
 
+.submitButton { 
+    background-color: var(--accent-blue);
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+}
+
+.submitButton:hover {
+    background-color: rgba(70, 92, 235, 1);
+}
+
+.submitButton:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
 @media (max-width: 768px) {
     .searchForm {
         padding: 15px;
@@ -86,6 +86,11 @@ dateInputs {
 
     .dateInputs {
         flex-direction: column;
-        gap: 10px
+        gap: 10px;
+    }
+
+    .formGroup input,
+    .formGroup select {
+        width: 100%;
     }
 }
