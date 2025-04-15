@@ -17,6 +17,7 @@ const AuthForm = ({ onLogin }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setError('');
         if (!formData.login || !formData.password) return;
 
         try {
@@ -87,7 +88,7 @@ const AuthForm = ({ onLogin }) => {
     );
 };
 
-AuthForm.prototype = {
+AuthForm.propTypes = {
     onLogin: PropTypes.func.isRequired,
 };
 

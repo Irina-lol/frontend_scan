@@ -7,7 +7,7 @@ import './styles/global.css';
 
 const App = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [userData, setUserData] = useState(null);
+    const [userData, setUserData] = useState({});
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -17,8 +17,8 @@ const App = () => {
         if (token && expire) {
             const isTokenExpired = new Date(expire) < new Date();
             if (isTokenExpired) {
-                localStorage.removeItem('accesToken');
-                localStorage.removeItem('tokenEpire');
+                localStorage.removeItem('accessToken');
+                localStorage.removeItem('tokenExpire');
                 setIsAuthenticated(false);
             } else {
                 fetchUserData(token);
@@ -34,12 +34,15 @@ const App = () => {
                     'Authorization': `Bearer ${token}`,
                 },
             });
+            if (!response.ok) throw new Error('Ошибка авторизации')
+
             const data = await response.json();
-            setUserData(data.eventFiltersInfo);
+            setUserData(data.eventFiltersInfo || {});
             setIsAuthenticated(true);
         } catch (error) {
-            console.error('Ошибка занрузки данных:', error);
+            console.error('Ошибка загрузки данных:', error);
             localStorage.removeItem('accessToken');
+            setUserData({});
         } finally {
             setLoading(false);
         }
@@ -55,7 +58,7 @@ const App = () => {
         localStorage.removeItem('accessToken');
         localStorage.removeItem('tokenExpire');
         setIsAuthenticated(false);
-        setUserData(null);
+        setUserData({});
     };
 
     if (loading) {

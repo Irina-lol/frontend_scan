@@ -6,7 +6,7 @@ import styles from './HomePage.module.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-const HomePage = ({ isAuthenticated, userData, onLogout }) => {
+const HomePage = ({ isAuthenticated, userData = {homePage}, onLogout }) => {
     const features = [
         {
             title: "Мониторинг СМИ",
@@ -50,13 +50,15 @@ const HomePage = ({ isAuthenticated, userData, onLogout }) => {
         ],
     };
 
+    const safeUserData = userData?.eventFiltersInfo || {};
+
     const tariffs = [
         {
             name: "Beginner",
             price: "799 p",
             description: "Для малого бизнеса",
             features: ["До 10 компаний", "До 1000 публикаций"],
-            isCurrent: userData?.companyLimit === 100,
+            isCurrent: safeUserData?.companyLimit === 100,
             color: "var(--light-blue)",
         },
         {
@@ -64,7 +66,7 @@ const HomePage = ({ isAuthenticated, userData, onLogout }) => {
             price: "1 299 p",
             description: "Для среднего бизнеса",
             features: ["До 50 компаний", "До 5000 публикаций"],
-            isCurrent: userData?.companyLimit === 1000,
+            isCurrent: safeUserData?.companyLimit === 1000,
             color: "var(--accent-blue)",
         },
         {
