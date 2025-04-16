@@ -54,6 +54,7 @@ const Header = ({ isAuthenticated, onLogout }) => {
                 ) : (
                     <div className={styles.authButtons}>
                         <Link to="/register" className={styles.registerLink}>Зарегистрироваться</Link>
+                        <span className={styles.separator}>|</span>
                         <Link to="/login" className={styles.loginButton}>Войти</Link>
                     </div>
                 )}

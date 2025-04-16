@@ -1,27 +1,22 @@
-.loader {
-    color: white;
-    font-size: 14px;
-    padding: 10px;
-}
-
 .header {
-    background-color: var(--primary-color);
-    padding: 15px 0;
-    color: white;
+    background-color: white;
+    width: 100%;
+    height: 93px;
+    margin: 0 auto;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     position: sticky;
     top: 0;
     z-index: 100;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
+    max-width: 1440px;
+    height: 100%;
     margin: 0 auto;
-    padding: 0 20px;
-    gap: 20px;
+    padding: 0 60px;
 }
 
 .logoContainer {
@@ -30,8 +25,9 @@
 }
 
 .logo {
-    height: 40px;
-    transition: transform 0.3s;
+    width: 141px;
+    height: 90px;
+    object-fit: contain;
 }
 
 .logo:hover {
@@ -43,20 +39,20 @@
     list-style: none;
     margin: 0;
     padding: 0;
-    gap: 25px;
+    gap: 40px;
 }
 
 .navList a {
-    color: white;
+    color: black;
     text-decoration: none;
     font-weight: 500;
-    padding: 5px 0;
+    font-size: 16px;
     position: relative;
-    transition: opacity 0.3s;
+    padding: 5px 0;
 }
 
 .navList a:hover {
-    opacity: 0.8;
+    color: var(--accent-blue);
 }
 
 .navList a::after {
@@ -66,6 +62,7 @@
     left: 0;
     width: 0;
     height: 2px;
+    background: var(--accent-blue);
     transition: width 0.3s;
 }
 
@@ -80,29 +77,36 @@
 }
 
 .registerLink {
-    color: white;
+    color: #949494;
     text-decoration: none;
-    transition: opacity 0.3s;
+    font-size: 16px;
+    transition: color 0.3s;
 }
 
 .registerLink:hover {
-    opacity: 0.8;
-    text-decoration: underline;
+    color: #6a6a6a;
+}
+
+.separator {
+    color: var(--light-blue);
 }
 
 .loginButton {
-    background-color: var(--accent-blue);
-    color: white;
+    background-color: var(--light-blue);
+    color: black;
     border: none;
-    padding: 8px 20px;
+    padding: 10px 25px;
     border-radius: 5px;
     cursor: pointer;
     font-weight: 500;
-    transition: background-color 0.3s;
+    font-size: 16px;
+    transition: all 0.3s;
 }
 
 .loginButton:hover {
-    background-color: #1a3af5;
+    background-color: #6ad3d0;
+    transform: translate(-2px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   }
   
 .userPanel {
@@ -112,13 +116,13 @@
 }
   
 .limitInfo {
-    background-color: var(--light-blue);
+    background-color: #bcbcbc;
     color: var(--black);
-    padding: 8px 15px;
+    padding: 10px 20px;
     border-radius: 5px;
     font-size: 14px;
     display: flex;
-    gap: 10px;
+    gap: 15px;
 }
   
 .limitInfo span {
@@ -138,56 +142,66 @@
 .logoutButton {
     background: none;
     border: none;
-    color: white;
+    color: var(--black);
     cursor: pointer;
-    padding: 5px;
-    transition: opacity 0.3s;
+    font-weight: 500;
+    font-size: 16px;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: all 0.3s;
 }
   
 .logoutButton:hover {
-    opacity: 0.8;
-    text-decoration: underline;
+    color: var(--accent-blue);
+    border-color: rgba(0,0,0,0.05);
+}
+
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 30px;
+    }
 }
 
 @media (max-width: 768px) {
+    .header {
+        height: auto;
+        padding: 15px 0;
+    }
+
     .container {
         flex-direction: column;
-        padding: 15px;
-        gap: 15px;
+        gap: 20px;
+        padding: 0 20px;
     }
 
     .navList {
-        gap: 15px;
+        gap: 25px;
     }
 
-    .userPanel {
-        flex-direction: column;
-        width: 100%;
-        align-items: flex-end;
-    }
-
-    .limitInfo {
-        margin-right: 0;
-        margin-bottom: 10px;
-        flex-direction: column;
-        gap: 5px;
-        align-items: flex-end;
-    }
-
-    .authButtons {
-        width: 100%;
-        justify-content: flex-end;
+    .logo {
+        height: 70px;
     }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 480px) {
     .navList {
-        gap: 10px;
-        font-size: 14px;
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .authButtons {
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+    }
+
+    .separator {
+        display: none;
     }
 
     .loginButton {
-        padding: 6px 12px;
-        font-size: 14px;
+        width: 100%;
+        text-align: center;
     }
 }

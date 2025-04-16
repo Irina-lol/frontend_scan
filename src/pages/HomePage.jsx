@@ -3,26 +3,42 @@ import Slider from "react-slick";
 import { Link } from "react-router-dom";
 import Header from '../components/Header/Header';
 import styles from './HomePage.module.css';
+import homePhoto from '../assets/home.jpg';
+import footerLogo from '../assets/footer.png';
+import timeIcon from '../assets/time.png';
+import searchIcon from '../assets/search.png';
+import shieldIcon from '../assets/shield.png';
+import illustration from '../assets/Humans.png'
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+
+function SampleNextArrow(props) {
+    const { className, style, onclick } = props;
+    return (
+        <div className={className} style={{ ...style, display: "block" }} onClick={onclick}></div>
+    );
+}
+
+function SamplePrevArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+        <div className={className} style={{ ...style, display: "block" }} onClick={onClick}></div>
+    )
+}
 
 const HomePage = ({ isAuthenticated, userData = {homePage}, onLogout }) => {
     const features = [
         {
-            title: "Мониторинг СМИ",
-            description: "Автоматический сбор публикаций о компании из всех значимых источников.",
+            icon: timeIcon,
+            description: "Высокая и оперативная скорость обработки заявки",
         },
         {
-            title: "Анализ тональности",
-            description: "Определяем позитивные, негативные и нейтральные упоминания.",
+            icon: searchIcon,
+            description: "Огромная комплексная база данных, обеспечивающая объуктивный ответ на запрос",
         },
         {
-            title: "Риск-факторы",
-            description: "Выявляем потенциальные угрозы для репутации компании.",
-        },
-        {
-            title: "Гибкие тарифы",
-            description: "Подписка на нужное количество компаний и ключевых персон",
+            icon: shieldIcon,
+            description: "Защита конфеденциальных сведений, не подлежащих разглашению по федеральному законодательству",
         },
     ];
 
@@ -32,6 +48,9 @@ const HomePage = ({ isAuthenticated, userData = {homePage}, onLogout }) => {
         speed: 500,
         slidesToShow: 3,
         slidesToScroll: 1,
+        arrows: true,
+        nextArrow: <SampleNextArrow />,
+        prevArrow: <SamplePrevArrow />,
         responsive: [
             {
                 breakpoint: 1200,
@@ -55,27 +74,30 @@ const HomePage = ({ isAuthenticated, userData = {homePage}, onLogout }) => {
     const tariffs = [
         {
             name: "Beginner",
-            price: "799 p",
-            description: "Для малого бизнеса",
-            features: ["До 10 компаний", "До 1000 публикаций"],
+            description: "Для небольшого иследования",
+            price: "799 ₽",
+            oldPrice: "1 200 ₽",
+            features: ["Безлимитная история запросов", "Безопасная сделка", "Поддержка 24/7"],
             isCurrent: safeUserData?.companyLimit === 100,
-            color: "var(--light-blue)",
+            color: "var(--accent-orange)",
         },
         {
             name: "Pro",
-            price: "1 299 p",
-            description: "Для среднего бизнеса",
-            features: ["До 50 компаний", "До 5000 публикаций"],
+            description: "Для HR и фрилансеров",
+            price: "1 299 ₽",
+            oldPrice: "2 600 ₽",
+            features: ["Все пункты тарифа Beginner", "Экспорт истории", "Рекомендации по приоритетам"],
             isCurrent: safeUserData?.companyLimit === 1000,
-            color: "var(--accent-blue)",
+            color: "var(--light-blue)",
         },
         {
             name: "Business",
-            price: "2 499 p",
-            description: "Для корпораций",
-            features: ["Неограниченное колличество", "Приоритетная поддержка"],
+            description: "Для корпоративных клиентов",
+            price: "2 379 ₽",
+            oldPrice: "3 700 ₽",
+            features: ["Все пункты тарифа Pro", "Безлимитное количество запросов", "Приоритетная поддержка"],
             isCurrent: false,
-            color: "var(--primary-color)",
+            color: "var(--black)",
         }
     ];
 
@@ -85,12 +107,16 @@ const HomePage = ({ isAuthenticated, userData = {homePage}, onLogout }) => {
 
             <main className={styles.main}>
                 <section className={styles.hero}>
-                    <h1>Сервис поиска публикаций о компании по её ИНН</h1>
-                    <p>Комплексный анализ публикаций, получение данных в формате PDF на электронную почту</p>
+                    <div className={styles.heroContent}> 
+                        <h1>Сервис по поиску публикаций о компании по его ИНН</h1>
+                        <p>Комплексный анализ публикаций, получение данных в формате PDF на электронную почту</p>
 
-                    {isAuthenticated && (
-                        <Link to="/search" className={styles.requestButton}>Запросить данные</Link>
-                    )}
+                        {isAuthenticated && (
+                            <Link to="/search" className={styles.requestButton}>Запросить данные</Link>
+                        )}
+                    </div>
+
+                    <img src={homePhoto} alt="Home" className={styles.homePhoto} />
                 </section>
 
                 <section className={styles.features}>
@@ -98,11 +124,17 @@ const HomePage = ({ isAuthenticated, userData = {homePage}, onLogout }) => {
                     <Slider {...settings}>
                         {features.map((feature, index) => (
                             <div key={index} className={styles.featureCard}>
-                                <h3>{feature.title}</h3>
+                                <img src={feature.icon} alt='Иконки' className={styles.featureIcon} />
                                 <p>{feature.description}</p>
                             </div>
                         ))}
                     </Slider>
+                </section>
+
+                <section className={styles.illustrationSection}>
+                    <div className={styles.illustrationContainer}>
+                        <img src={illustration} alt="Человек" className={illustration}  />
+                    </div>
                 </section>
 
                 <section className={styles.tariffs}>
@@ -112,8 +144,8 @@ const HomePage = ({ isAuthenticated, userData = {homePage}, onLogout }) => {
                             <div key={index} className={styles.tariffCard} style={{ borderTop: `4px solid ${tariff.color}` }}>
                                 {tariff.isCurrent && <span className={styles.badge}>Текущий тариф</span>}
                                 <h3>{tariff.name}</h3>
-                                <p className={styles.price}>{tariff.price}</p>
-                                <p className={styles.description}>{tariff.description}</p>
+                                <p className={styles.price} data-old-price={tariff.oldPrice}>{tariff.price}</p>
+                                <p className={styles.description} style={{ background: tariff.color }}>{tariff.description}</p>
                                 <ul className={styles.featuresList}>
                                     {tariff.features.map((feature, i) => (
                                         <li key={i}>{feature}</li>
@@ -129,7 +161,13 @@ const HomePage = ({ isAuthenticated, userData = {homePage}, onLogout }) => {
             </main>
 
             <footer className={styles.footer}>
-                <p>© 2023 СКАН. Все права защищены.</p>
+                <img src={footerLogo} alt="СКАН" className={styles.footerLogo} />
+                <div className={styles.footerInfo}>
+                <p>г. Москва, Цветной б-р, 40</p>
+                <p>+7 495 771 21 11</p>
+                <p>info@skan.ru</p>
+                <p>Copyright. 2022</p>
+                </div>
             </footer>
         </div>
     );
