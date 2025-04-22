@@ -77,7 +77,7 @@ const App = () => {
                     }
                 />
                 <Route path="/search" element={
-                    isAuthenticated ? <SearchPage userData={userData} onLogout={handleLogout} />
+                    isAuthenticated ? <SearchPage userData={userData} onLogout={handleLogout} isAuthenticated={isAuthenticated} />
                     : <Navigate to="/login" />
                     }
                 />

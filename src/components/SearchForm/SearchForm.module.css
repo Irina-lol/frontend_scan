@@ -1,96 +1,119 @@
 .searchForm {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
+    display: flex;
+    gap: 3rem;
     background: white;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    margin-top: 1rem;
+    width: 100%;
+}
+
+.formSection {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
 }
 
 .formGroup {
-    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
 }
 
 .formGroup label {
-    display: block;
     font-weight: 500;
-    margin-bottom: 5px;
+    color: var(--black);
+    font-size: 1.05rem;
 }
 
 .formGroup input,
 .formGroup select {
-    width: 100%;
-    padding: 10px;
-    border-radius: 5px;
+    padding: 0.85rem;
     border: 1px solid #ddd;
-    font-size: 16px;
-}
-
-.checkboxGroup {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.checkboxGroup input {
-    margin-right: 10px;
+    border-radius: 6px;
+    font-size: 1rem;
+    width: 100%;
 }
 
 .dateRange {
-    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
 }
 
 .dateInputs {
     display: flex;
-    gap: 10px;
+    gap: 0.8rem;
 }
 
 .dateInputs input {
     flex: 1;
 }
 
-.error {
-    color: red;
-    font-size: 14px;
-    margin-top: 5px;
-}
-
-.inputError {
-    border-color: red !important;
-}
-
-.submitButton { 
-    background-color: var(--accent-blue);
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 5px;
+.checkboxGroup label {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
     cursor: pointer;
-    font-size: 16px;
+    color: var(--black);
+    font-size: 1.05rem;
+}
+
+.checkboxGroup input {
+    width: 1.3rem;
+    height: 1.3rem;
+    accent-color: var(--primary-color);
+}
+
+.submitArea {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.submitButton {
+    background-color: rgba(89, 112, 255, 0.5);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
     width: 100%;
 }
 
-.submitButton:hover {
-    background-color: rgba(70, 92, 235, 1);
+.sudmitButton:not(:disabled) {
+    background-color: rgba(89, 112, 255, 1);
+    box-shadow: 0 2px 8px rgba(89, 112, 255, 0.3);
+}
+
+.submitButton:hover:not(:disabled) {
+    background-color: rgba(71, 92, 230, 1); /* Чуть темнее при наведении */
+    transform: translateY(-1px); /* Легкий эффект поднятия */
 }
 
 .submitButton:disabled {
-    background-color: #ccc;
     cursor: not-allowed;
+    opacity: 0.7; /* Делаем более мутным */
 }
 
-@media (max-width: 768px) {
-    .searchForm {
-        padding: 15px;
-    }
+.requiredHint {
+    font-size: 0.75rem;
+    color: #888;
+    margin-top: 0.5rem;
+}
 
-    .dateInputs {
-        flex-direction: column;
-        gap: 10px;
-    }
+.inputError {
+    border-color: #e74c3c !important;
+}
 
-    .formGroup input,
-    .formGroup select {
-        width: 100%;
-    }
+.error {
+    color: #e74c3c;
+    font-size: 0.85rem;
+    margin-top: 0.3rem;
 }

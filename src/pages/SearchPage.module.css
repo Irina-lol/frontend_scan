@@ -2,34 +2,99 @@
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    background-color: white;
 }
-  
+
 .main {
     flex: 1;
-    padding: 40px 20px;
-    max-width: 1200px;
+    padding: 2rem 5%; 
+    max-width: 1400px;
     margin: 0 auto;
     width: 100%;
 }
-  
-.main h1 {
-    color: var(--primary-color);
-    margin-bottom: 30px;
-    text-align: center;
+
+.searchContainer {
+    display: flex;
+    gap: 3rem; 
+    justify-content: space-between;
+    margin-top: 2rem; 
+}
+
+.textContent {
+    flex: 1;
+    max-width: 900px;
+    margin-left: -5rem; 
+}
+
+.textContent h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+.textContent p {
+    font-size: 1.3rem;
+    color: var(--black);
+    margin-bottom: 3rem;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.illustrations {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: flex-end;
+    margin-top: -2rem;
+}
+
+.illustration {
+    max-width: 500px;
+    height: auto;
+    border-radius: 8px;
 }
 
 .newSearchButton {
     background: none;
     border: none;
-    color: var(--accent-blue);
+    color: var(--black);
+    font-size: 1rem;
     cursor: pointer;
-    margin-bottom: 20px;
-    font-size: 16px;
+    margin-bottom: 1.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 0.5rem;
+    transition: all 0.2s;
 }
 
 .newSearchButton:hover {
-    text-decoration: underline;
+    background-color: blue;
+}
+
+.footer {
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 30px 5%;
+    display: flex;
+    height: 130px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footerLogo {
+    height: 100px;
+    width: auto;
+}
+
+.footerInfo {
+    text-align: right;
+}
+
+.footerInfo p {
+    margin: 5px 0;
+    font-size: 14px;
 }

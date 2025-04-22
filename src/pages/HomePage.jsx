@@ -8,7 +8,7 @@ import footerLogo from '../assets/footer.png';
 import timeIcon from '../assets/time.png';
 import searchIcon from '../assets/search.png';
 import shieldIcon from '../assets/shield.png';
-import illustration from '../assets/Humans.png'
+import illustration from '../assets/people.png'
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
