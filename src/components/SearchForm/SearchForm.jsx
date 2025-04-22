@@ -197,7 +197,7 @@ const SearchForm = ({ onSearch }) => {
                     >
                         Поиск
                     </button>
-                    <p className={styles.requiredHint}>* Обязательные к заполнению поля</p>
+                    <p className={styles.description}>* Обязательные к заполнению поля</p>
                 </div>
             </div>
         </form>
