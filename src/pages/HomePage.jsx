@@ -2,6 +2,7 @@ import React from "react";
 import Slider from "react-slick";
 import { Link } from "react-router-dom";
 import Header from '../components/Header/Header';
+import Footer from '../components/Footer/Footer';
 import styles from './HomePage.module.css';
 import homePhoto from '../assets/home.jpg';
 import footerLogo from '../assets/footer.png';
@@ -160,15 +161,7 @@ const HomePage = ({ isAuthenticated, userData = {homePage}, onLogout }) => {
                 </section>
             </main>
 
-            <footer className={styles.footer}>
-                <img src={footerLogo} alt="СКАН" className={styles.footerLogo} />
-                <div className={styles.footerInfo}>
-                <p>г. Москва, Цветной б-р, 40</p>
-                <p>+7 495 771 21 11</p>
-                <p>info@skan.ru</p>
-                <p>Copyright. 2022</p>
-                </div>
-            </footer>
+            <Footer />
         </div>
     );
 };

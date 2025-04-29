@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Header from '../components/Header/Header';
 import SearchForm from '../components/SearchForm/SearchForm';
 import Results from '../components/Results/Results';
+import Footer from '../components/Footer/Footer';
 import styles from './SearchPage.module.css';
 import { Navigate } from 'react-router-dom';
 import illustration1 from '../assets/doc.png';
@@ -42,23 +43,12 @@ const SearchPage = ({ userData, onLogout, isAuthenticated }) => {
                     </div>
                 ) : (
                     <>
-                        <button onClick={handleNewSearch} className={styles.newSearchButton}>
-                            ← Новый поиск
-                        </button>
                         <Results searchData={searchData} />
                     </>
                 )}
             </main>
 
-            <footer className={styles.footer}>
-                            <img src={footerLogo} alt="СКАН" className={styles.footerLogo} />
-                            <div className={styles.footerInfo}>
-                            <p>г. Москва, Цветной б-р, 40</p>
-                            <p>+7 495 771 21 11</p>
-                            <p>info@skan.ru</p>
-                            <p>Copyright. 2022</p>
-                            </div>
-            </footer>
+            <Footer />
         </div>
     );
 };

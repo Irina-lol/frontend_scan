@@ -1,7 +1,325 @@
 .results {
     max-width: 1200px;
-    margin: 0 auto;
+    font-family: 'Arial', sans-serif;
+}
+
+.resultsHeader {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    margin-bottom: 40px;
+}
+
+.resultsText {
+    flex: 1;
+    margin-bottom: 50px;
+    margin-left: -30px;
+}
+
+.resultsTitle {
+    font-size: 50px;
+    font-weight: 800;
+    color: var(--black);
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.resultsSubtitle {
+    font-size: 25px;
+    color: var(--black);
+    line-height: 1.5;
+
+}
+
+.resultsImage {
+    width: 550px;
+    height: auto;
+}
+
+.summarySection {
+    position: relative;
+    margin-top: -100px;
+}
+
+.summaryHeader {
+    padding: 50px 0px;
+    margin-bottom: 0;
+    margin-left: -30px;
+}
+
+.summaryHeaderContent {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.summaryTitle {
+    font-size: 40px;
+    font-weight: 800;
+    color: var(--black);
+    margin-bottom: 10px; 
+}
+
+.summaryCount {
+    font-size: 18px;
+    color: #666;
+}
+
+.histogramWrapper {
+    width: 1260px;
+    height: 140px;
+    position: relative;
+    border-radius: 10px;
+    overflow: visible;
+}
+
+.histogramCarousel {
+    overflow-x: auto;
+    margin: 0;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    border: 2px solid rgba(2, 148, 145, 1);
+    border-radius: 10px;
+    background: white;
+    height: 100%;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.histogramTable {
+    display: table;
+    width: 100%;
+    min-width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: white;
+    height: 100%;
+}
+
+.histogramRow {
+    display: table-row;
+}
+
+.histogramCell {
+    display: table-cell;
+    padding: 8px 15px; 
+    vertical-align: middle;
+    position: relative;
+    text-align: center;
+}
+
+.headerCell {
+    font-weight: 600;
+    color: white !important; 
+    background-color: rgba(2, 148, 145, 1) !important; 
+    width: 120px;
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    padding: 10px 20px; 
+    border-right: 1px solid rgba(255,255,255,0.3);
+}
+
+.dateCell, .dataCell {
+    text-align: center;
+    white-space: nowrap;
+    min-width: 100px;
+    border-right: 1px solid #eee;
+}
+
+.dataCell {
+    font-weight: 500;
+}
+
+.scrollButton {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    color: #585656;
+    background: transparent !important;
+    border: none;
+    z-index: 3;
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: color 0.2s;
+    padding: 0;
+    box-shadow: none !important;
+
+}
+
+.scrollButton:hover {
+    color: #1e1e1e;
+    background: transparent !important;
+}
+
+.scrollButton:first-of-type {
+    left: -45px;
+}
+
+.scrollButton:last-of-type {
+    right: -45px;
+}
+
+/* Publications section */
+.publications {
+    margin-top: 30px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.publicationsTitle {
+    font-size: 26px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.publicationsList {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.publicationCard {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
     padding: 20px;
+    background: #fff;
+}
+
+.publicationHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    color: #666;
+    font-size: 14px;
+}
+
+.publicationSource {
+    color: #5970FF;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.publicationSource:hover {
+    text-decoration: underline;
+}
+
+.publicationTitle {
+    font-size: 20px;
+    margin: 0 0 15px 0;
+    color: #333;
+    line-height: 1.4;
+}
+
+.publicationTags {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.tag {
+    background: #f0f2ff;
+    color: #5970FF;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.publicationContent {
+    margin-bottom: 20px;
+    line-height: 1.6;
+    color: #333;
+}
+
+.xmlContent {
+    white-space: pre-wrap; /* Сохраняет переносы строк */
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+}
+  
+.xmlContent img {
+    max-width: 100%;
+    height: auto;
+}
+
+.publicationContent img {
+    max-width: 100%;
+    height: auto;
+    margin: 10px 0;
+    border-radius: 4px;
+}
+
+.publicationFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+.readButton {
+    background: #5970FF;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.2s;
+}
+
+.readButton:hover {
+    background: #4758d4;
+}
+
+.wordCount {
+    color: #666;
+    font-size: 14px;
+}
+
+/* Load more button */
+.loadMoreButton {
+    background: #5970FF;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 30px;
+    cursor: pointer;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    transition: background 0.2s;
+}
+
+.loadMoreButton:hover {
+    background: #4758d4;
+}
+
+.loadMoreButton:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+/* No results */
+.noResults {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+    font-size: 18px;
 }
 
 .loaderContainer {
@@ -11,18 +329,18 @@
     justify-content: center;
     height: 200px;
 }
-  
+
 .loader {
     border: 4px solid #f3f3f3;
-    border-top: 4px solid var(--primary-color);
+    border-top: 4px solid #3498db;
     border-radius: 50%;
     width: 40px;
     height: 40px;
-    animation: spin 1s liner infinite;
+    animation: spin 1s linear infinite;
 }
 
 .error {
-    color: red;
+    color: #d32f2f;
     text-align: center;
     padding: 20px;
     background: #ffebee;
@@ -34,135 +352,4 @@
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
-}
-  
-.histograms {
-    margin-bottom: 40px;
-}
-  
-.histogramCarousel {
-    display: flex;
-    overflow-x: auto;
-    gap: 20px;
-    padding: 10px 0;
-}
-  
-.histogramItem {
-    min-width: 300px;
-    background: white;
-    border-radius: 10px;
-    padding: 15px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-  
-.histogramItem h4 {
-    margin-bottom: 10px;
-    color: var(--primary-color);
-}
-  
-.histogramItem ul {
-    list-style: none;
-    padding: 0;
-}
-  
-.histogramItem li {
-    display: flex;
-    justify-content: space-between;
-    padding: 5px 0;
-    border-bottom: 1px solid #eee;
-}
-  
-.publications {
-    margin-top: 30px;
-}
-  
-.publicationCard {
-    background: white;
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-  
-.publicationHeader {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    color: #666;
-}
-  
-.publicationTitle {
-    margin: 10px 0;
-    color: var(--black);
-}
-  
-.publicationTags {
-    margin-bottom: 15px;
-}
-  
-.tag {
-    display: inline-block;
-    background: var(--light-blue);
-    color: var(--black);
-    padding: 3px 8px;
-    border-radius: 4px;
-    margin-right: 8px;
-    font-size: 14px;
-}
-  
-.publicationContent {
-    margin-bottom: 15px;
-    line-height: 1.6;
-}
-  
-.publicationFooter {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-  
-.readMore {
-    color: var(--accent-blue);
-    text-decoration: none;
-}
-  
-.readMore:hover {
-    text-decoration: underline;
-}
-  
-.wordCount {
-    color: #666;
-}
-  
-.loadMoreButton {
-    background: var(--accent-blue);
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    margin: 20px auto;
-    display: block;
-    cursor: pointer;
-}
-  
-.loadMoreButton:hover {
-    background: rgba(70, 92, 235, 1);
-}
-
-@media (max-width: 768px) {
-    .histogramCarousel {
-        flex-direction: column;
-        overflow-x: hidden;
-        gap: 15px;
-    }
-
-    .histogramItem {
-        min-width: 100%;
-    }
-
-    .publicationHeader {
-        flex-direction: column;
-        gap: 5px;
-        align-items: flex-start;
-    }
 }

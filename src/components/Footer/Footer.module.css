@@ -1,0 +1,31 @@
+.footer {
+    background: var(--primary-color);
+    color: white;
+    padding: 30px 5%;
+    display: flex;
+    height: 130px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footerLogoContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footerLogo {
+    height: 100px;
+    width: auto;
+}
+
+
+
+.footerInfo {
+    text-align: right;
+}
+
+.footerInfo p {
+    margin: 5px 0;
+    font-size: 14px;
+}
