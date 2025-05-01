@@ -288,7 +288,7 @@ const Results = ({ searchData }) => {
                                             </a>
                                         </div>
                                         
-                                        <h4 className={styles.publicationTitle}>{pub.title || 'Без названия'}</h4>
+                                        <h4 className={styles.publicationTitle}>{pub.title.text || 'Без названия'}</h4>
                                         
                                         {pub.attributes && (
                                             <div className={styles.publicationTags}>
