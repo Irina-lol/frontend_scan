@@ -166,47 +166,66 @@
     right: -45px;
 }
 
-/* Publications section */
+
 .publications {
     margin-top: 30px;
-    background: #fff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+    width: 1260px;
+    margin-left: -30px;
 }
 
 .publicationsTitle {
-    font-size: 26px;
-    font-weight: 600;
-    color: #333;
+    font-size: 40px;
+    font-weight: 800;
+    color: var(--black);
     margin-bottom: 25px;
     text-align: left;
+    padding: 50px 0;
 }
 
 .publicationsList {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(2, 641px);
     gap: 25px;
+    justify-content: center;
+    padding-left: 60px;
+    padding-right: 60px;
 }
 
 .publicationCard {
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    padding: 20px;
-    background: #fff;
+    width: 641px;
+    height: 694px;
+    border: 1px solid var(--white);
+    padding: 30px;
+    background: var(--white);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
 }
 
 .publicationHeader {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.publicationDate {
     color: #666;
     font-size: 14px;
+    font-weight: 500;
 }
 
 .publicationSource {
-    color: #5970FF;
+    color: #666;
     text-decoration: none;
+    font-size: 14px;
     font-weight: 500;
 }
 
@@ -215,8 +234,9 @@
 }
 
 .publicationTitle {
-    font-size: 20px;
-    margin: 0 0 15px 0;
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0 0 20px 0;
     color: #333;
     line-height: 1.4;
 }
@@ -224,33 +244,63 @@
 .publicationTags {
     display: flex;
     gap: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .tag {
-    background: #f0f2ff;
-    color: #5970FF;
-    padding: 4px 10px;
-    border-radius: 4px;
+    background: var(--accent-orange);
+    color: var(--black);
+    padding: 6px 12px;
+    border-radius: 15px;
     font-size: 12px;
-    font-weight: 500;
+    font-weight: 600;
+    text-transform: uppercase;
 }
 
 .publicationContent {
+    flex-grow: 1;
+    overflow: hidden;
     margin-bottom: 20px;
     line-height: 1.6;
     color: #333;
+    position: relative;
+}
+
+.publicationContent::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
 }
 
 .xmlContent {
-    white-space: pre-wrap; /* Сохраняет переносы строк */
+    white-space: pre-wrap;
     font-family: Arial, sans-serif;
     line-height: 1.5;
+    overflow-y: auto;
 }
   
 .xmlContent img {
     max-width: 100%;
     height: auto;
+    margin: 10px 0;
+    border-radius: 4px;
+    display: block;
+}
+
+.xmlContent p {
+    margin-bottom: 15px;
+}
+
+.xmlContent a {
+    color: var(--accent-blue);
+    text-decoration: none;
+}
+
+.xmlContent a:hover {
+    text-decoration: underline;
 }
 
 .publicationContent img {
@@ -264,31 +314,35 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 20px;
+    margin-top: auto;
     padding-top: 15px;
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--white);
 }
 
 .readButton {
-    background: #5970FF;
-    color: white;
+    background: var(--light-blue);
+    color: var(--black);
     padding: 10px 20px;
     border-radius: 5px;
     text-decoration: none;
     font-weight: 500;
-    transition: background 0.2s;
+    transition: all 0.2s;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
 }
 
 .readButton:hover {
-    background: #4758d4;
+    background: var(--light-blue);
+    transform: translate(-1px);
 }
 
 .wordCount {
     color: #666;
     font-size: 14px;
+    font-weight: 500;
 }
 
-/* Load more button */
 .loadMoreButton {
     background: #5970FF;
     color: white;
@@ -314,7 +368,6 @@
     cursor: not-allowed;
 }
 
-/* No results */
 .noResults {
     text-align: center;
     padding: 40px;
@@ -352,4 +405,117 @@
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 1440px) {
+    .histogramWrapper,
+    .publications {
+        width: 100%;
+        margin-left: 0;
+    }
+    
+    .publicationsList {
+        grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+        padding: 0 30px;
+    }
+    
+    .publicationCard {
+        width: 100%;
+        height: auto;
+        min-height: 694px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .resultsHeader {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .resultsText {
+        margin-left: 0;
+    }
+    
+    .summaryHeader {
+        margin-left: 0;
+    }
+    
+    .scrollButton {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .resultsTitle {
+        font-size: 36px;
+    }
+    
+    .resultsSubtitle {
+        font-size: 20px;
+    }
+    
+    .resultsImage {
+        width: 100%;
+        max-width: 400px;
+    }
+    
+    .summaryTitle,
+    .publicationsTitle {
+        font-size: 32px;
+    }
+    
+    .publicationsList {
+        grid-template-columns: 1fr;
+        padding: 0 15px;
+    }
+    
+    .publicationCard {
+        height: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .resultsTitle {
+        font-size: 28px;
+    }
+    
+    .resultsSubtitle {
+        font-size: 18px;
+    }
+    
+    .summaryTitle,
+    .publicationsTitle {
+        font-size: 24px;
+        padding: 30px 0;
+    }
+    
+    .publicationHeader {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .publicationTitle {
+        font-size: 20px;
+    }
+    
+    .loadMoreButton {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 360px) {
+    .resultsTitle {
+        font-size: 24px;
+    }
+    
+    .publicationCard {
+        padding: 20px;
+    }
+    
+    .tag {
+        font-size: 10px;
+        padding: 4px 8px;
+    }
 }

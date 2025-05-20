@@ -55,3 +55,46 @@
     height: auto;
     border-radius: 8px;
 }
+
+@media (max-width: 480px) {
+    .main {
+        padding: 1.5rem 3%;
+    }
+
+    .searchContainer {
+        flex-direction: column;
+        gap: 2rem;
+        margin-top: 1rem;
+    }
+
+    .textContent {
+        margin-left: 0;
+        max-width: 100%;
+    }
+
+    .textContent h1 {
+        font-size: 1.8rem;
+        text-align: left;
+    }
+
+    .textContent p {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+        text-align: left; 
+    }
+
+    .illustrations {
+        margin-top: 0;
+        align-items: center; 
+        gap: 1.5rem;
+        order: -1;
+    }
+
+    .illustration {
+        max-width: 100%;
+    }
+
+    .searchForm {
+        width: 100%;
+    }
+}

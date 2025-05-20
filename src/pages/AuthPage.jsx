@@ -15,11 +15,14 @@ const AuthPage = ({ onLogin, isAuthenticated, onLogout }) => {
         <>
             <Header isAuthenticated={isAuthenticated} onLogout={onLogout} />
             <div className={styles.authPage}>
-                <div className={styles.authContent}>
+                <div className={styles.authContentText}>
                     <h1 className={styles.authTitle}>
                         Для оформления подписки на тариф, необходимо авторизоваться.
                     </h1>
-                    <img src={authImage} alt="Авторизация" className={styles.authImage} />
+                </div>
+
+                <div className={styles.authImageContainer}>
+                        <img src={authImage} alt="Авторизация" className={styles.authImage} />
                 </div>
 
                 <div className={styles.authFormContainer}>

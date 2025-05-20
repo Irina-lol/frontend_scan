@@ -134,7 +134,7 @@ const HomePage = ({ isAuthenticated, userData = {homePage}, onLogout }) => {
 
                 <section className={styles.illustrationSection}>
                     <div className={styles.illustrationContainer}>
-                        <img src={illustration} alt="Человек" className={illustration}  />
+                        <img src={illustration} alt="Человек" className={styles.illustration}  />
                     </div>
                 </section>
 

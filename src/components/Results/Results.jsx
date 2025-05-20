@@ -2,38 +2,65 @@ import React, { useState, useEffect } from "react";
 import styles from './Results.module.css';
 import resultImage from '../../assets/result.png';
 
-// Эта функция преобразует XML в простой HTML
 const cleanXmlContent = (xmlString) => {
     if (!xmlString) return '';
     
-    let html = xmlString
-      .replace(/<\?xml.*?\?>/, '')
-      .replace(/<scandoc>|<\/scandoc>/g, '');
-      
-    return html.trim();
-  };
-
-// Эта функция обрабатывает контент любой структуры
-const getSafeContent = (content) => {
-    if (!content) return { safeText: 'Нет содержимого', safeMarkup: null };
+    const decodeHtmlEntities = (str) => {
+        const textArea = document.createElement('textarea');
+        textArea.innerHTML = str;
+        return textArea.value;
+    };
     
-    if (typeof content === 'string') {
-      return { safeText: content, safeMarkup: null };
-    }
+    let cleanText = xmlString
+        .replace(/<\?xml.*?\?>/g, '')
+        .replace(/<scandoc>|<\/scandoc>/g, '');
+
+    cleanText = decodeHtmlEntities(cleanText);
+
+    const allowedTags = ['img', 'p', 'br', 'a'];
+    cleanText = cleanText.replace(/<\/?([a-z][a-z0-9]*)[^>]*?(\/)?>/gi, (match, tag) => {
+        return allowedTags.includes(tag.toLowerCase()) ? match : '';
+    });
+    
+    cleanText = cleanText.replace(/\s+/g, ' ').trim();
+    
+    return cleanText;
+};
+
+const getSafeContent = (content) => {
+    if (!content) return { 
+        safeText: 'Нет содержимого', 
+        safeMarkup: null 
+    };
     
     if (content.markup && typeof content.markup === 'string') {
-      return { 
-        safeText: content.text || 'Нет текстовой версии', 
-        safeMarkup: cleanXmlContent(content.markup) 
-      };
+        const cleanedMarkup = cleanXmlContent(content.markup);
+        return { 
+            safeText: cleanedMarkup.replace(/<[^>]+>/g, '') || 'Нет текстовой версии',
+            safeMarkup: cleanedMarkup 
+        };
     }
     
     if (content.text && typeof content.text === 'string') {
-      return { safeText: content.text, safeMarkup: null };
+        return { 
+            safeText: content.text,
+            safeMarkup: null
+        };
     }
     
-    return { safeText: 'Неизвестный формат содержимого', safeMarkup: null };
-  };
+    if (typeof content === 'string') {
+        const cleaned = cleanXmlContent(content);
+        return { 
+            safeText: cleaned,
+            safeMarkup: null
+        };
+    }
+    
+    return { 
+        safeText: 'Неизвестный формат содержимого',
+        safeMarkup: null 
+    };
+};
 
 const Results = ({ searchData }) => {
     const [loading, setLoading] = useState(true);
@@ -188,11 +215,6 @@ const Results = ({ searchData }) => {
         return <div className={styles.error}>{error}</div>;
     }
 
-    // Для отладки - посмотрим первые 2 публикации
-    console.log('Пример данных публикаций:', {
-    first: publications[0]?.content,
-    second: publications[1]?.content
-    });
     return (
         <div className={styles.results}>
             <div className={styles.resultsHeader}>
@@ -270,6 +292,7 @@ const Results = ({ searchData }) => {
                         <div className={styles.publicationsList}>
                             {publications.slice(0, visibleCount).map((pub, index) => {
                                 if (!pub) return null;
+
                                 const { safeText, safeMarkup } = getSafeContent(pub.content);
                                 
                                 return (
@@ -305,10 +328,18 @@ const Results = ({ searchData }) => {
                                         )}
                                         
                                         <div className={styles.publicationContent}>
-                                            {safeMarkup ? (
-                                                <div dangerouslySetInnerHTML={{ __html: safeMarkup }} className={styles.xmlContent} />
+                                            {safeText ? (
+                                                <div 
+                                                    dangerouslySetInnerHTML={{ __html: safeMarkup
+                                                     }}
+                                                    className={styles.xmlContent}
+                                                />
+                                            ) : safeText ? (
+                                                <div style={{ whiteSpace: 'pre-line' }}>
+                                                    {safeText}
+                                                </div>
                                             ) : (
-                                                <p>{safeText}</p>
+                                                <p className={styles.noContentText}>Нет текстовой информации</p>
                                             )}
                                         </div>
                                         

@@ -282,3 +282,122 @@
     font-size: 12px;
     font-weight: 600;
 }
+
+@media (max-width: 480px) {
+    .homePage {
+        overflow-x: hidden;
+    }
+
+    .main {
+        padding: 0 15px;
+    }
+
+    .hero {
+        flex-direction: column-reverse;
+        padding: 20px 0;
+        gap: 20px;
+    }
+
+    .heroContent {
+        max-width: 100%;
+        align-items: center;
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 28px;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+
+    .hero p {
+        font-size: 16px;
+        margin-bottom: 25px;
+        text-align: center;
+        max-width: 100%;
+    }
+
+    .homePhoto {
+        width: 100%;
+        max-width: 100%;
+        top: 0;
+        margin-bottom: 20px;
+    }
+
+    .requestButton {
+        align-self: center;
+        padding: 12px 24px;
+        font-size: 16px;
+    }
+
+    .features {
+        padding: 30px 0;
+    }
+
+    .features h2 {
+        font-size: 24px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .featureCard {
+        height: auto;
+        padding: 20px 15px;
+        margin: 0 10px;
+    }
+
+    .featureIcon {
+        width: 50px;
+        height: 50px;
+    }
+
+    .featureCard p {
+        font-size: 15px;
+    }
+
+    .slick-slider {
+        margin: 0 -15px;
+    }
+
+    .slick-list {
+        padding: 10px 0 30px;
+    }
+
+    .illustrationSection {
+        max-width: 100%;
+        padding: 20px 0;
+    }
+
+    .illustration {
+        width: 880px;
+        height: 500px; 
+        object-fit: contain; 
+        margin: 0 auto;
+    }
+
+    .tariffs {
+        padding: 30px 0;
+    }
+
+    .tariffs h2 {
+        font-size: 24px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .tariffCards {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .tariffCard {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .tariffButton {
+        width: calc(100% - 40px);
+        margin: 20px 20px 0;
+    }
+}

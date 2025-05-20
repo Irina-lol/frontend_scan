@@ -1,34 +1,49 @@
 .authForm {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    padding: 40px;
+    gap: 1.25rem; 
+    padding: 2.5rem; 
     background: white;
-    border-radius: 10px;
-    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
-    border: none;
+    border-radius: 0.625rem;
+    box-shadow: 0 0.3125rem 1.5625rem rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 28rem; 
+    margin: 0 auto;
+    box-sizing: border-box;
 }
 
 .tabs {
     display: flex;
-    border-bottom: 1px solid #ddd;
-    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 1.25rem; 
+    overflow-x: auto;
+    scrollbar-width: none; 
+    -ms-overflow-style: none; 
+}
+
+.tabs::-webkit-scrollbar {
+    display: none; 
 }
 
 .tab {
-    padding: 10px 20px;
-    cursor: pointer;
+    padding: 0.75rem 1.5rem; 
+    font-size: 1rem;
+    color: #666;
     background: none;
     border: none;
-    font-size: 16px;
-    color: #666;
     position: relative;
-    transition: all 0.3s ease;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+}
+
+.tab:hover {
+    color: #333;
 }
 
 .tab.active {
     color: var(--primary-color);
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .tab.active::after {
@@ -42,78 +57,82 @@
 }
 
 .formGroup {
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
 }
 
 .formGroup label {
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 0.5rem; 
+    font-size: 0.875rem; 
     font-weight: 500;
     color: #333;
 }
 
 .formGroup input {
     width: 100%;
-    padding: 12px;
+    padding: 0.875rem;
     border: 1px solid #ddd;
-    border-radius: 6px;
-    font-size: 16px;
-    transition: border-color 0.3s;
+    border-radius: 0.5rem; 
+    font-size: 1rem; 
+    transition: all 0.2s ease;
 }
 
 .formGroup input:focus {
     border-color: var(--accent-blue);
     outline: none;
-    box-shadow: 0 0 0 2px rgba(89, 112, 255, 0.2);
+    box-shadow: 0 0 0 3px rgba(89, 112, 255, 0.15);
 }
 
 .forgotPassword {
-    display: block;
-    margin: -10px 0 15px;
-    text-align: right;
+    display: inline-block;
+    margin-top: -0.5rem; 
+    margin-bottom: 1rem; 
+    font-size: 0.8125rem;
     color: var(--accent-blue);
-    font-size: 14px;
-    text-decoration: none;
-    transition: color 0.2s;
-}
-
-.forgotPassword:hover {
-    color: #1a3af5;
-    text-decoration: underline;
+    text-align: right;
+    float: right;
 }
 
 .submitButton {
-    background-color: var(--accent-blue);
+    background: var(--accent-blue);
     color: white;
-    padding: 14px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 16px;
+    padding: 0.9375rem;
+    font-size: 1rem;
     font-weight: 500;
+    border: none;
+    border-radius: 0.5rem; 
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: all 0.2s ease;
+    margin-top: 0.5rem; 
     width: 100%;
 }
 
 .submitButton:hover {
     background: #1a3af5;
+    transform: translateY(-1px);
+}
+
+.submitButton:active {
+    transform: translateY(0);
 }
 
 .submitButton:disabled {
-    background-color: #a5d7f8;
+    background: #ccc;
     cursor: not-allowed;
+    transform: none;
 }
 
+
 .socialAuth {
-    margin-top: 30px;
-    text-align: center;
+    margin-top: 1.5rem; 
+    position: relative;
 }
 
 .socialAuth p {
-    margin-bottom: 15px;
+    text-align: center;
     color: #666;
-    position: relative;
+    font-size: 0.875rem; 
+    margin-bottom: 1.25rem; 
 }
 
 .socialAuth p::before,
@@ -123,7 +142,7 @@
     top: 50%;
     width: 30%;
     height: 1px;
-    background: #ddd;
+    background: #eee;
 }
 
 .socialAuth p::before {
@@ -136,33 +155,61 @@
 
 .socialButtons {
     display: flex;
-    gap: 12px;
+    gap: 0.75rem;
     justify-content: center;
 }
 
 .socialButton {
     display: flex;
     align-items: center;
-    gap: 8px;
-    background: none;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem; 
     border: 1px solid #ddd;
-    padding: 10px 16px;
-    border-radius: 6px;
+    border-radius: 0.5rem; 
+    background: white;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: all 0.2s ease;
+    font-size: 0.875rem;
 }
 
-.socialButton:hover {
-    background: #f5f5f5;
-    border-color: #ccc;
+.socialButton:active {
+    background: #f0f0f0;
 }
 
 .error {
-    color: #d32f2f;
-    padding: 12px;
+    padding: 0.875rem; 
     background: #ffebee;
-    border-radius: 6px;
-    margin-bottom: 20px;
+    color: #d32f2f;
+    border-radius: 0.5rem;
+    margin-bottom: 1.25rem;
+    font-size: 0.875rem; 
     text-align: center;
-    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    .authForm {
+        padding: 2rem;
+        max-width: 100%;
+        box-shadow: none;
+    }
+
+    .tabs {
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 480px) {
+    .authForm {
+        padding: 1.5rem;
+    }
+
+    .socialButtons {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .socialButton {
+        flex: 1;
+        min-width: 120px;
+    }
 }
